@@ -1,5 +1,6 @@
 package com.mertkilic.countries.data.model;
 
+import com.bluelinelabs.logansquare.annotation.JsonField;
 import com.bluelinelabs.logansquare.annotation.JsonObject;
 
 /**
@@ -7,10 +8,15 @@ import com.bluelinelabs.logansquare.annotation.JsonObject;
  */
 @JsonObject
 public class Country {
+    @JsonField
     private String name;
+    @JsonField
     private String capital;
+    @JsonField
     private String region;
+    @JsonField
     private long population;
+    @JsonField
     private double area;
 
     public String getName() {
