@@ -14,6 +14,8 @@ public class Country {
     private String capital;
     @JsonField
     private String region;
+    @JsonField(name = "alpha2Code")
+    private String code;
     @JsonField
     private long population;
     @JsonField
@@ -57,5 +59,13 @@ public class Country {
 
     public void setArea(double area) {
         this.area = area;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

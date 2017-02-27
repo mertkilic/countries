@@ -24,6 +24,7 @@ public class CountryTest {
             assertNotNull(country.getRegion());
             assertNotNull(country.getName());
             assertNotNull(country.getCapital());
+            assertNotNull(country.getCode());
             assertNotEquals(0, country.getPopulation());
             assertNotEquals(0, country.getArea());
         } catch (IOException e) {
