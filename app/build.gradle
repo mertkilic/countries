@@ -26,6 +26,7 @@ dependencies {
     // test
     testCompile rootProject.ext.testLibraries.junit
     testCompile rootProject.ext.testLibraries.mockito
+    testCompile rootProject.ext.testLibraries.mockWebServer
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -35,6 +36,7 @@ dependencies {
 
     compile rootProject.ext.libraries.picasso
     compile rootProject.ext.libraries.retrofit
+    compile rootProject.ext.libraries.okhttp
     compile rootProject.ext.libraries.okhttpLogging
 
     apt rootProject.ext.aptLibraries.loganCompiler
