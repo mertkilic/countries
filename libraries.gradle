@@ -18,6 +18,7 @@ ext {
 
     libraries = [
             appCompat            : "com.android.support:appcompat-v7:${androidSupportVersion}",
+            supportv4            : "com.android.support:support-v4:${androidSupportVersion}",
             recyclerView         : "com.android.support:recyclerview-v7:${androidSupportVersion}",
             okhttpLogging        : "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}",
             okhttp               : "com.squareup.okhttp3:okhttp:${okhttpVersion}",

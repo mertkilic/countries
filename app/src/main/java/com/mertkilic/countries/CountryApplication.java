@@ -23,8 +23,8 @@ public class CountryApplication extends Application {
         File cache = new File(getFilesDir(), Constants.CACHE_NAME);
         if(!cache.exists()){
             cache.mkdir();
-            Constants.CACHE_DIR = cache.getAbsolutePath();
         }
+        Constants.CACHE_DIR = cache.getAbsolutePath();
     }
 
     public static boolean isConnected(){

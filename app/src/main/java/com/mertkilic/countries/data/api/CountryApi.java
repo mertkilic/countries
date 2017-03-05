@@ -14,5 +14,4 @@ public interface CountryApi {
 
     @GET("all")
     Call<List<Country>> getCountries();
-
 }
