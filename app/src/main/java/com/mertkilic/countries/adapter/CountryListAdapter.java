@@ -48,7 +48,7 @@ public class CountryListAdapter extends RecyclerView.Adapter<CountryListAdapter.
         }
 
         void bindData(CountryItemViewModel model) {
-            binding.setModel(model);
+            binding.setViewModel(model);
         }
 
     }

@@ -33,8 +33,18 @@ public class CountryService {
         return instance;
     }
 
-    public CountryApi getApi(){
+    public CountryApi getApi() {
         return getRetrofit(Constants.BASE_URL).create(CountryApi.class);
+    }
+
+    public String generateCountryApiFields(String... fields) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < fields.length; i++) {
+            builder.append(fields[i]);
+            if (i != fields.length - 1)
+                builder.append(";");
+        }
+        return builder.toString();
     }
 
     private Retrofit getRetrofit(String baseUrl) {
@@ -47,7 +57,7 @@ public class CountryService {
 
     private OkHttpClient getHttpClient() {
         return new OkHttpClient.Builder()
-                .cache(getCache())
+                //.cache(getCache())
                 .addInterceptor(getHttpLoggingInterceptor())
                 .addInterceptor(getOfflineCacheInterceptor()).build();
     }

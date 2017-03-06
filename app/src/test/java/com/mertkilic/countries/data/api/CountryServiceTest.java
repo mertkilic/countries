@@ -7,8 +7,6 @@ import com.mertkilic.countries.util.Utils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.IOException;
 import java.security.cert.CertificateException;
@@ -54,7 +52,7 @@ public class CountryServiceTest {
     @Test
     public void sendsGetAllTaskRequestToTheCorrectEndpoint() throws Exception {
         enqueueMockResponse();
-        api.getCountries().execute().body();
+        api.getCountriesByFields("name").execute().body();
         assertGetRequestSentTo("all");
     }
 

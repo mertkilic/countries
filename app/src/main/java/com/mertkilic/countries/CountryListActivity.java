@@ -1,5 +1,6 @@
 package com.mertkilic.countries;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 
@@ -29,6 +30,13 @@ public class CountryListActivity extends BaseActivity<ActivityCountryListBinding
     @Override
     public void onCountriesLoaded() {
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showCountryDetail(String code) {
+        Intent intent = new Intent(this, CountryDetailActivity.class);
+        intent.putExtras(CountryDetailActivity.getCountryDetailExtra(code));
+        startActivity(intent);
     }
 
     private void initCountryList() {

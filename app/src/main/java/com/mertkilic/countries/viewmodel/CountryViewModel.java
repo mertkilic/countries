@@ -47,19 +47,21 @@ public class CountryViewModel extends BaseViewModel<CountryView> {
 
     private void fetchCountries() {
         fetchingCountries.set(true);
-        service.getApi().getCountries().enqueue(new Callback<List<Country>>() {
-            @Override
-            public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
-                setFailure(false);
-                countries = response.body();
-                view.onCountriesLoaded();
-            }
+        service.getApi()
+                .getCountriesByFields(service.generateCountryApiFields("name", "alpha2Code"))
+                .enqueue(new Callback<List<Country>>() {
+                    @Override
+                    public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
+                        setFailure(false);
+                        countries = response.body();
+                        view.onCountriesLoaded();
+                    }
 
-            @Override
-            public void onFailure(Call<List<Country>> call, Throwable t) {
-                setFailure(true);
-            }
-        });
+                    @Override
+                    public void onFailure(Call<List<Country>> call, Throwable t) {
+                        setFailure(true);
+                    }
+                });
     }
 
     public ObservableBoolean getError() {
@@ -74,8 +76,13 @@ public class CountryViewModel extends BaseViewModel<CountryView> {
         return countries.size();
     }
 
+    public void showCountryDetail(String code) {
+        view.showCountryDetail(code);
+    }
+
     private void setFailure(boolean failure) {
         fetchingCountries.set(false);
         error.set(failure);
     }
+
 }

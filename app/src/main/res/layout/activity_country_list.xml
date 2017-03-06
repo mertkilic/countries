@@ -5,7 +5,7 @@
     <data>
 
         <variable
-                name="model"
+                name="viewModel"
                 type="com.mertkilic.countries.viewmodel.CountryViewModel"/>
     </data>
 
@@ -13,7 +13,7 @@
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:enabled="@{model.fetchingCountries}">
+            app:enabled="@{viewModel.fetchingCountries}">
 
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_country"

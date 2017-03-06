@@ -8,4 +8,6 @@ import com.mertkilic.countries.base.BaseView;
 
 public interface CountryView extends BaseView {
     void onCountriesLoaded();
+
+    void showCountryDetail(String code);
 }

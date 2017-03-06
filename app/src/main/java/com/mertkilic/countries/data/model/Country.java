@@ -2,12 +2,17 @@ package com.mertkilic.countries.data.model;
 
 import com.bluelinelabs.logansquare.annotation.JsonField;
 import com.bluelinelabs.logansquare.annotation.JsonObject;
+import com.mertkilic.countries.util.Constants;
 
 /**
  * Created by Mert Kilic on 27.2.2017.
  */
 @JsonObject
 public class Country {
+
+    private final String GOOGLE_STATIC_MAP_URL =
+            "https://maps.googleapis.com/maps/api/staticmap?center=latlng&zoom=10&size=800x400";
+
     @JsonField
     private String name;
     @JsonField
@@ -20,6 +25,12 @@ public class Country {
     private long population;
     @JsonField
     private double area;
+    @JsonField
+    private float[] latlng;
+
+    public Country() {
+        latlng = new float[2];
+    }
 
     public String getName() {
         return name;
@@ -68,5 +79,17 @@ public class Country {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public float[] getLatlng() {
+        return latlng;
+    }
+
+    public void setLatlng(float[] latlng) {
+        this.latlng = latlng;
+    }
+
+    public String getStaticMapUrl(){
+        return GOOGLE_STATIC_MAP_URL.replace("latlng", latlng[0] + "," + latlng[1]);
     }
 }

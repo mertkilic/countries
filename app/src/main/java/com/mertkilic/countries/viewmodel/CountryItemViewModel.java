@@ -22,4 +22,8 @@ public class CountryItemViewModel extends BaseItemViewModel<Country> {
     public String getCode(){
         return model.getCode();
     }
+
+    public void showCountryDetail(){
+        countryViewModel.showCountryDetail(model.getCode().toLowerCase());
+    }
 }

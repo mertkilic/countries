@@ -24,4 +24,11 @@ public class DataBindingAdapter {
         if (resourceId != 0)
             Picasso.with(view.getContext()).load(resourceId).into(view);
     }
+
+    @BindingAdapter("image")
+    public static void setImage(ImageView view, String url) {
+        if(url != null){
+            Picasso.with(view.getContext()).load(url).into(view);
+        }
+    }
 }

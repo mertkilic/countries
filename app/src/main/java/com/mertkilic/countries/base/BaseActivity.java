@@ -8,6 +8,8 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.mertkilic.countries.BR;
+
 /**
  * Created by Mert Kilic on 3.3.2017.
  */
@@ -31,6 +33,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends BaseView
             throw new IllegalStateException("viewModel must not be null");
         }
         binding = DataBindingUtil.setContentView(this, layoutResId);
+        binding.setVariable(BR.viewModel, viewModel);
         //noinspection unchecked
         viewModel.attachView((BaseView) this, savedInstanceState);
     }
@@ -41,6 +44,14 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends BaseView
         super.onSaveInstanceState(outState);
         if (viewModel != null) {
             viewModel.saveInstanceState(outState);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(viewModel != null){
+            viewModel.detachView();
         }
     }
 }
