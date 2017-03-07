@@ -9,16 +9,14 @@
                 name="viewModel"
                 type="com.mertkilic.countries.viewmodel.CountryViewModel"/>
     </data>
-    
+
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         <android.support.v7.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                app:title="@string/app_name"
-                android:background="@color/colorPrimary"/>
+                style="@style/CountryToolbarStyle"
+                app:title="@string/app_name"/>
 
         <android.support.v4.widget.SwipeRefreshLayout
                 android:id="@+id/refresh_layout"
@@ -27,11 +25,11 @@
                 android:paddingTop="?android:attr/actionBarSize"
                 app:refreshing="@{viewModel.inProgress}">
 
-        <android.support.v7.widget.RecyclerView
-                android:id="@+id/list_country"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="@{!viewModel.error}"/>
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/list_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{!viewModel.error}"/>
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
