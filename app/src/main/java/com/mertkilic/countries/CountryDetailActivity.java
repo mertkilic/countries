@@ -26,6 +26,8 @@ public class CountryDetailActivity extends BaseActivity<ActivityCountryDetailBin
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setAndBindContentView(R.layout.activity_country_detail, savedInstanceState);
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.refreshLayout.setOnRefreshListener(this);
         try {
             code = getIntent().getExtras().getString(EXTRA_COUNTRY_CODE);

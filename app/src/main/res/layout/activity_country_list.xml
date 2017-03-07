@@ -14,10 +14,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:title="@string/app_name"
+                android:background="@color/colorPrimary"/>
+
         <android.support.v4.widget.SwipeRefreshLayout
                 android:id="@+id/refresh_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingTop="?android:attr/actionBarSize"
                 app:refreshing="@{viewModel.inProgress}">
 
         <android.support.v7.widget.RecyclerView
