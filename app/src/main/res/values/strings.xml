@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Countries</string>
+
     <string name="label_capital">Capital :</string>
     <string name="label_region">Region :</string>
     <string name="label_population">Population :</string>
     <string name="label_area">Area :</string>
+
+    <string name="error_internet">Please check your internet connection\nSwipe down to retry</string>
+    <string name="error_something">Something went wrong\nSwipe down to retry</string>
 </resources>

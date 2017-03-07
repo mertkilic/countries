@@ -57,7 +57,8 @@ public class CountryService {
 
     private OkHttpClient getHttpClient() {
         return new OkHttpClient.Builder()
-                //.cache(getCache())
+                .cache(getCache())
+                .connectTimeout(Constants.NETWORK_CONNECTION_TIMEOUT,TimeUnit.SECONDS)
                 .addInterceptor(getHttpLoggingInterceptor())
                 .addInterceptor(getOfflineCacheInterceptor()).build();
     }

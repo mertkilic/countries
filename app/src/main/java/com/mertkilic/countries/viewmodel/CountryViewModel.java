@@ -1,13 +1,14 @@
 package com.mertkilic.countries.viewmodel;
 
-import android.databinding.ObservableBoolean;
 import android.util.SparseArray;
 
+import com.mertkilic.countries.R;
 import com.mertkilic.countries.base.BaseViewModel;
 import com.mertkilic.countries.data.api.CountryService;
 import com.mertkilic.countries.data.model.Country;
 import com.mertkilic.countries.view.CountryView;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +24,10 @@ public class CountryViewModel extends BaseViewModel<CountryView> {
 
     private SparseArray<CountryItemViewModel> itemViewModels = new SparseArray<>();
     private List<Country> countries = new ArrayList<>();
-    private ObservableBoolean fetchingCountries = new ObservableBoolean();
-    private ObservableBoolean error = new ObservableBoolean();
-
     private CountryService service = CountryService.getInstance();
 
     public CountryViewModel() {
-        fetchCountries();
+        loadCountries();
     }
 
     public CountryItemViewModel getItemViewModel(int position) {
@@ -45,8 +43,8 @@ public class CountryViewModel extends BaseViewModel<CountryView> {
         return itemViewModel;
     }
 
-    private void fetchCountries() {
-        fetchingCountries.set(true);
+    public void loadCountries() {
+        inProgress.set(true);
         service.getApi()
                 .getCountriesByFields(service.generateCountryApiFields("name", "alpha2Code"))
                 .enqueue(new Callback<List<Country>>() {
@@ -59,17 +57,14 @@ public class CountryViewModel extends BaseViewModel<CountryView> {
 
                     @Override
                     public void onFailure(Call<List<Country>> call, Throwable t) {
-                        setFailure(true);
+                        String message;
+                        if (t instanceof UnknownHostException)
+                            message = view.getResourcez().getString(R.string.error_internet);
+                        else
+                            message = view.getResourcez().getString(R.string.error_something);
+                        setFailure(true, message);
                     }
                 });
-    }
-
-    public ObservableBoolean getError() {
-        return error;
-    }
-
-    public ObservableBoolean getFetchingCountries() {
-        return fetchingCountries;
     }
 
     public int getCount() {
@@ -78,11 +73,6 @@ public class CountryViewModel extends BaseViewModel<CountryView> {
 
     public void showCountryDetail(String code) {
         view.showCountryDetail(code);
-    }
-
-    private void setFailure(boolean failure) {
-        fetchingCountries.set(false);
-        error.set(failure);
     }
 
 }

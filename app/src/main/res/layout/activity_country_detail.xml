@@ -1,5 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,87 +9,112 @@
                 type="com.mertkilic.countries.viewmodel.CountryDetailViewModel"/>
     </data>
 
-    <ScrollView
+    <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/activity_vertical_margin">
+                android:layout_height="?attr/actionBarSize"
+                app:title="@{viewModel.country.name}"/>
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/detail_line_height"
-                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                    android:text="@{viewModel.country.name}"/>
+        <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:refreshing="@{viewModel.inProgress}">
 
-            <LinearLayout
+            <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/detail_line_height"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:visibility="@{!viewModel.error}">
 
-                <TextView
-                        style="@style/DetailTextStyle"
-                        android:text="@string/label_capital"/>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/activity_vertical_margin">
 
-                <TextView
-                        style="@style/DetailTextStyle"
-                        android:text="@{viewModel.country.capital}"/>
-            </LinearLayout>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/detail_line_height"
+                            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                            android:text="@{viewModel.country.name}"/>
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/detail_line_height"
-                    android:orientation="horizontal">
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/detail_line_height"
+                            android:orientation="horizontal">
 
-                <TextView
-                        style="@style/DetailTextStyle"
-                        android:text="@string/label_region"/>
+                        <TextView
+                                style="@style/DetailTextStyle"
+                                android:text="@string/label_capital"/>
 
-                <TextView
-                        style="@style/DetailTextStyle"
-                        android:text="@{viewModel.country.region}"/>
-            </LinearLayout>
+                        <TextView
+                                style="@style/DetailTextStyle"
+                                android:text="@{viewModel.country.capital}"/>
+                    </LinearLayout>
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/detail_line_height"
-                    android:orientation="horizontal">
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/detail_line_height"
+                            android:orientation="horizontal">
 
-                <TextView
-                        style="@style/DetailTextStyle"
-                        android:text="@string/label_population"/>
+                        <TextView
+                                style="@style/DetailTextStyle"
+                                android:text="@string/label_region"/>
 
-                <TextView
-                        style="@style/DetailTextStyle"
-                        android:text="@{String.valueOf(viewModel.country.population)}"/>
-            </LinearLayout>
+                        <TextView
+                                style="@style/DetailTextStyle"
+                                android:text="@{viewModel.country.region}"/>
+                    </LinearLayout>
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/detail_line_height"
-                    android:orientation="horizontal">
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/detail_line_height"
+                            android:orientation="horizontal">
 
-                <TextView
-                        style="@style/DetailTextStyle"
-                        android:text="@string/label_area"/>
+                        <TextView
+                                style="@style/DetailTextStyle"
+                                android:text="@string/label_population"/>
 
-                <TextView
-                        style="@style/DetailTextStyle"
-                        android:text="@{String.valueOf(viewModel.country.area)}"/>
-            </LinearLayout>
+                        <TextView
+                                style="@style/DetailTextStyle"
+                                android:text="@{String.valueOf(viewModel.country.population)}"/>
+                    </LinearLayout>
 
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:layout_gravity="center"
-                    app:image="@{viewModel.country.staticMapUrl}"/>
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/detail_line_height"
+                            android:orientation="horizontal">
 
-        </LinearLayout>
+                        <TextView
+                                style="@style/DetailTextStyle"
+                                android:text="@string/label_area"/>
 
-    </ScrollView>
+                        <TextView
+                                style="@style/DetailTextStyle"
+                                android:text="@{String.valueOf(viewModel.country.area)}"/>
+                    </LinearLayout>
+
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:layout_gravity="center"
+                            app:image="@{viewModel.country.staticMapUrl}"/>
+
+
+                </LinearLayout>
+            </ScrollView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <include
+                layout="@layout/layout_error"
+                bind:viewModel="@{viewModel}"/>
+
+    </FrameLayout>
 
 </layout>

@@ -1,7 +1,9 @@
 package com.mertkilic.countries;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.mertkilic.countries.adapter.CountryListAdapter;
@@ -11,7 +13,7 @@ import com.mertkilic.countries.view.CountryView;
 import com.mertkilic.countries.viewmodel.CountryViewModel;
 
 public class CountryListActivity extends BaseActivity<ActivityCountryListBinding, CountryViewModel>
-        implements CountryView {
+        implements CountryView, SwipeRefreshLayout.OnRefreshListener {
 
     private CountryListAdapter adapter;
 
@@ -39,7 +41,18 @@ public class CountryListActivity extends BaseActivity<ActivityCountryListBinding
         startActivity(intent);
     }
 
+    @Override
+    public void onRefresh() {
+        viewModel.loadCountries();
+    }
+
+    @Override
+    public Resources getResourcez() {
+        return getResources();
+    }
+
     private void initCountryList() {
+        binding.refreshLayout.setOnRefreshListener(this);
         binding.listCountry.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CountryListAdapter(viewModel);
         binding.listCountry.setAdapter(adapter);

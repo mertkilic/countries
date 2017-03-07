@@ -2,6 +2,8 @@ package com.mertkilic.countries.adapter;
 
 import android.content.res.Resources;
 import android.databinding.BindingAdapter;
+import android.databinding.BindingConversion;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -30,5 +32,10 @@ public class DataBindingAdapter {
         if(url != null){
             Picasso.with(view.getContext()).load(url).into(view);
         }
+    }
+
+    @BindingConversion
+    public static int getVisibility(boolean visible) {
+        return visible ? View.VISIBLE : View.GONE;
     }
 }
