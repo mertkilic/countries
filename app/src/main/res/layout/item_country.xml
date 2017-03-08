@@ -13,6 +13,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/list_item_height"
             android:orientation="horizontal"
+            android:paddingStart="@dimen/activity_vertical_margin"
+            android:paddingEnd="@dimen/activity_vertical_margin"
             android:onClick="@{()->viewModel.showCountryDetail()}">
 
         <ImageView
@@ -27,6 +29,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:paddingStart="@dimen/activity_vertical_margin"
+                android:paddingEnd="@dimen/activity_vertical_margin"
                 android:layout_gravity="center"
                 android:text="@{viewModel.name}"/>
 
