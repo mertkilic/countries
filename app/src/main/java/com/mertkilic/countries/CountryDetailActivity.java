@@ -32,7 +32,7 @@ public class CountryDetailActivity extends BaseActivity<ActivityCountryDetailBin
         super.onCreate(savedInstanceState);
         setAndBindContentView(R.layout.activity_country_detail, savedInstanceState);
         setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ~ActionBar.DISPLAY_SHOW_TITLE);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.refreshLayout.setOnRefreshListener(this);
         try {
             code = getIntent().getExtras().getString(EXTRA_COUNTRY_CODE);
@@ -55,5 +55,13 @@ public class CountryDetailActivity extends BaseActivity<ActivityCountryDetailBin
     @Override
     public void onRefresh() {
         viewModel.getCountryDetail(code);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

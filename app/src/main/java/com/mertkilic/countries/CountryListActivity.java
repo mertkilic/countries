@@ -46,6 +46,7 @@ public class CountryListActivity extends BaseActivity<ActivityCountryListBinding
         viewModel.loadCountries();
     }
 
+    //typo is because of Activity's getResources() method
     @Override
     public Resources getResourcez() {
         return getResources();
