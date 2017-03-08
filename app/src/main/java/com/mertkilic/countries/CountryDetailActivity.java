@@ -3,6 +3,11 @@ package com.mertkilic.countries;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.mertkilic.countries.base.BaseActivity;
 import com.mertkilic.countries.databinding.ActivityCountryDetailBinding;
@@ -27,7 +32,7 @@ public class CountryDetailActivity extends BaseActivity<ActivityCountryDetailBin
         super.onCreate(savedInstanceState);
         setAndBindContentView(R.layout.activity_country_detail, savedInstanceState);
         setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ~ActionBar.DISPLAY_SHOW_TITLE);
         binding.refreshLayout.setOnRefreshListener(this);
         try {
             code = getIntent().getExtras().getString(EXTRA_COUNTRY_CODE);

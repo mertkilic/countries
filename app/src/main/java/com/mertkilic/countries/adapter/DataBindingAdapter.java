@@ -3,6 +3,7 @@ package com.mertkilic.countries.adapter;
 import android.content.res.Resources;
 import android.databinding.BindingAdapter;
 import android.databinding.BindingConversion;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 

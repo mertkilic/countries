@@ -1,7 +1,6 @@
 package com.mertkilic.countries.viewmodel;
 
 import android.databinding.Bindable;
-import android.databinding.ObservableBoolean;
 
 import com.mertkilic.countries.BR;
 import com.mertkilic.countries.R;
